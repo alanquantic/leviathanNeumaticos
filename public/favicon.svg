@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="120" fill="#1a1a1a"/>
+  <circle cx="128" cy="128" r="90" fill="none" stroke="#2d2d2d" stroke-width="16"/>
+  <circle cx="128" cy="128" r="50" fill="none" stroke="#2d2d2d" stroke-width="12"/>
+  <path d="M128 40 L128 20 L140 32 L128 20 L116 32 Z" fill="#22c55e"/>
+  <path d="M216 128 L236 128 L224 140 L236 128 L224 116 Z" fill="#22c55e"/>
+  <path d="M128 216 L128 236 L116 224 L128 236 L140 224 Z" fill="#22c55e"/>
+  <path d="M40 128 L20 128 L32 116 L20 128 L32 140 Z" fill="#22c55e"/>
+  <path d="M128 30 A98 98 0 0 1 210 80" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M210 176 A98 98 0 0 1 128 226" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M46 176 A98 98 0 0 1 30 128" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M210 80 A98 98 0 0 1 226 128" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M128 226 A98 98 0 0 1 46 176" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M30 128 A98 98 0 0 1 128 30" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,392 @@
+[
+  {
+    "stageName": "Stage 1 - TC-500",
+    "machineName": "R163 TC 500",
+    "inputProduct": "Whole Car & Truck with 3\" Screen",
+    "finishProduct": "Chips from 3\" Screen Opening, rough edge",
+    "tonsPerHour": 8,
+    "utilityCosts": [
+      {
+        "name": "Electricity (Kwh)",
+        "pricePerUnit": 0.09,
+        "usePerHour": 132,
+        "costPerHour": 11.879999999999999,
+        "costPerTon": 1.4849999999999999
+      },
+      {
+        "name": "Water (Gph)",
+        "pricePerUnit": 0.01,
+        "usePerHour": 25,
+        "costPerHour": 0.25,
+        "costPerTon": 0.03125
+      },
+      {
+        "name": "Utility Variable 1",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      },
+      {
+        "name": "Utility Variable 2",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      }
+    ],
+    "productionLabor": [
+      {
+        "name": "Supervisor",
+        "costPerHour": 35,
+        "usePerHour": 0.125,
+        "totalCostPerHour": 4.375,
+        "costPerTon": 0.546875
+      },
+      {
+        "name": "Rolling Stock Operator",
+        "costPerHour": 30,
+        "usePerHour": 0.75,
+        "totalCostPerHour": 22.5,
+        "costPerTon": 2.8125
+      },
+      {
+        "name": "General Labor 1",
+        "costPerHour": 16,
+        "usePerHour": 1,
+        "totalCostPerHour": 16,
+        "costPerTon": 2
+      },
+      {
+        "name": "General Labor 2",
+        "costPerHour": 16,
+        "usePerHour": 1,
+        "totalCostPerHour": 16,
+        "costPerTon": 2
+      }
+    ],
+    "maintenanceLabor": [
+      {
+        "name": "Screen Replace",
+        "productionHours": 2000,
+        "productionTons": 16000,
+        "leadMechanic": 2,
+        "mechanic": 2,
+        "laborer": 4,
+        "costPerTon": 0.0075
+      },
+      {
+        "name": "Splash Plate Replace (*)",
+        "productionHours": 10000,
+        "productionTons": 80000,
+        "leadMechanic": 4,
+        "mechanic": 4,
+        "laborer": 6,
+        "costPerTon": 0.0026
+      },
+      {
+        "name": "Wear Plate Replace (*)",
+        "productionHours": 10000,
+        "productionTons": 80000,
+        "leadMechanic": 1,
+        "mechanic": 1,
+        "laborer": 2,
+        "costPerTon": 0.00075
+      },
+      {
+        "name": "Oil Filter Replace",
+        "productionHours": 1000,
+        "productionTons": 8000,
+        "leadMechanic": 0.5,
+        "mechanic": 0.5,
+        "laborer": 14,
+        "costPerTon": 0.00175
+      },
+      {
+        "name": "Replace Grease Drum",
+        "productionHours": 600,
+        "productionTons": 4800,
+        "leadMechanic": 0.5,
+        "mechanic": 0.5,
+        "laborer": 14,
+        "costPerTon": 0.002916666666666667
+      },
+      {
+        "name": "Shift Inspections",
+        "productionHours": 8,
+        "productionTons": 64,
+        "leadMechanic": 0,
+        "mechanic": 1,
+        "laborer": 1,
+        "costPerTon": 0.25
+      },
+      {
+        "name": "Weekly Inspections",
+        "productionHours": 40,
+        "productionTons": 320,
+        "leadMechanic": 1,
+        "mechanic": 1,
+        "laborer": 2,
+        "costPerTon": 0.1875
+      }
+    ],
+    "totalUtilitiesCostPerTon": 1.5162499999999999,
+    "totalProductionLaborCostPerTon": 7.359375,
+    "totalMaintenanceLaborCostPerTon": 0.5717666666666666,
+    "totalCostPerTon": 9.447391666666666
+  },
+  {
+    "stageName": "Stage 2 - TG-500",
+    "machineName": "R163 TG 500",
+    "inputProduct": "3\" Nominal Mixed (Car & Truck) Chips",
+    "finishProduct": "1-1/8\" Screened Chips",
+    "tonsPerHour": 6.5,
+    "utilityCosts": [
+      {
+        "name": "Electricity (Kwh)",
+        "pricePerUnit": 0.09,
+        "usePerHour": 300,
+        "costPerHour": 27,
+        "costPerTon": 4.153846153846154
+      },
+      {
+        "name": "Water (Gph)",
+        "pricePerUnit": 0.01,
+        "usePerHour": 25,
+        "costPerHour": 0.25,
+        "costPerTon": 0.038461538461538464
+      },
+      {
+        "name": "Utility Variable 1",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      },
+      {
+        "name": "Utility Variable 2",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      }
+    ],
+    "productionLabor": [
+      {
+        "name": "Supervisor",
+        "costPerHour": 35,
+        "usePerHour": 0.125,
+        "totalCostPerHour": 4.375,
+        "costPerTon": 0.6730769230769231
+      },
+      {
+        "name": "Rolling Stock Operator",
+        "costPerHour": 30,
+        "usePerHour": 0.5,
+        "totalCostPerHour": 15,
+        "costPerTon": 2.3076923076923075
+      },
+      {
+        "name": "General Labor 1",
+        "costPerHour": 16,
+        "usePerHour": 1,
+        "totalCostPerHour": 16,
+        "costPerTon": 2.4615384615384617
+      },
+      {
+        "name": "General Labor 2",
+        "costPerHour": 16,
+        "usePerHour": 1,
+        "totalCostPerHour": 16,
+        "costPerTon": 2.4615384615384617
+      }
+    ],
+    "maintenanceLabor": [
+      {
+        "name": "Blade Replace (Lift & Swap)",
+        "productionHours": 7000,
+        "productionTons": 45500,
+        "leadMechanic": 5,
+        "mechanic": 10,
+        "laborer": 20,
+        "costPerTon": 0.01703296703296703
+      },
+      {
+        "name": "Screen Replace",
+        "productionHours": 2500,
+        "productionTons": 16250,
+        "leadMechanic": 2,
+        "mechanic": 2,
+        "laborer": 4,
+        "costPerTon": 0.0073846153846153844
+      },
+      {
+        "name": "Splash Plate Replace (*)",
+        "productionHours": 10000,
+        "productionTons": 65000,
+        "leadMechanic": 4,
+        "mechanic": 4,
+        "laborer": 6,
+        "costPerTon": 0.0032
+      },
+      {
+        "name": "Wear Plate Replace (*)",
+        "productionHours": 10000,
+        "productionTons": 65000,
+        "leadMechanic": 1,
+        "mechanic": 1,
+        "laborer": 2,
+        "costPerTon": 0.0009230769230769231
+      },
+      {
+        "name": "Oil Filter Replace",
+        "productionHours": 1000,
+        "productionTons": 6500,
+        "leadMechanic": 0.5,
+        "mechanic": 0.5,
+        "laborer": 14,
+        "costPerTon": 0.0021538461538461538
+      },
+      {
+        "name": "Replace Grease Drum",
+        "productionHours": 600,
+        "productionTons": 3900,
+        "leadMechanic": 0.5,
+        "mechanic": 0.5,
+        "laborer": 14,
+        "costPerTon": 0.0035897435897435897
+      },
+      {
+        "name": "Shift Inspections",
+        "productionHours": 8,
+        "productionTons": 52,
+        "leadMechanic": 1,
+        "mechanic": 1,
+        "laborer": 1,
+        "costPerTon": 0.8461538461538461
+      },
+      {
+        "name": "Weekly Inspections",
+        "productionHours": 40,
+        "productionTons": 260,
+        "leadMechanic": 2,
+        "mechanic": 2,
+        "laborer": 2,
+        "costPerTon": 0.3384615384615385
+      },
+      {
+        "name": "Personnel Cost Estimate/HR",
+        "productionHours": 0,
+        "productionTons": 35,
+        "leadMechanic": 35,
+        "mechanic": 28,
+        "laborer": 16,
+        "costPerTon": 1.2375919413919414
+      }
+    ],
+    "totalUtilitiesCostPerTon": 4.1923076923076925,
+    "totalProductionLaborCostPerTon": 7.903846153846154,
+    "totalMaintenanceLaborCostPerTon": 1.2375919413919414,
+    "totalCostPerTon": 13.333745787545787
+  },
+  {
+    "stageName": "Stage 3 - Cracker Mill",
+    "machineName": "Cracker Mill",
+    "inputProduct": "1/2\" Minus, Wire Free",
+    "finishProduct": "10 Minus",
+    "tonsPerHour": 4,
+    "utilityCosts": [
+      {
+        "name": "Electricity (Kwh)",
+        "pricePerUnit": 0.09,
+        "usePerHour": 142,
+        "costPerHour": 12.78,
+        "costPerTon": 3.195
+      },
+      {
+        "name": "Water (Gph)",
+        "pricePerUnit": 0.01,
+        "usePerHour": 5,
+        "costPerHour": 0.05,
+        "costPerTon": 0.0125
+      },
+      {
+        "name": "Utility Variable 1",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      },
+      {
+        "name": "Utility Variable 2",
+        "pricePerUnit": 0,
+        "usePerHour": 0,
+        "costPerHour": 0,
+        "costPerTon": 0
+      }
+    ],
+    "productionLabor": [
+      {
+        "name": "Supervisor",
+        "costPerHour": 35,
+        "usePerHour": 0.06,
+        "totalCostPerHour": 2.1,
+        "costPerTon": 0.525
+      },
+      {
+        "name": "Rolling Stock Operator",
+        "costPerHour": 30,
+        "usePerHour": 0.125,
+        "totalCostPerHour": 3.75,
+        "costPerTon": 0.9375
+      },
+      {
+        "name": "General Labor 1",
+        "costPerHour": 25,
+        "usePerHour": 1,
+        "totalCostPerHour": 25,
+        "costPerTon": 6.25
+      },
+      {
+        "name": "General Labor 2",
+        "costPerHour": 16,
+        "usePerHour": 0,
+        "totalCostPerHour": 0,
+        "costPerTon": 0
+      }
+    ],
+    "maintenanceLabor": [
+      {
+        "name": "Replace Grease Drum",
+        "productionHours": 1000,
+        "productionTons": 1000,
+        "leadMechanic": 4000,
+        "mechanic": 0.5,
+        "laborer": 0.5,
+        "costPerTon": 15
+      },
+      {
+        "name": "Shift Inspections",
+        "productionHours": 8,
+        "productionTons": 8,
+        "leadMechanic": 32,
+        "mechanic": 0.5,
+        "laborer": 0.5,
+        "costPerTon": 27.5
+      },
+      {
+        "name": "Weekly Inspections",
+        "productionHours": 40,
+        "productionTons": 40,
+        "leadMechanic": 160,
+        "mechanic": 1,
+        "laborer": 1,
+        "costPerTon": 55
+      }
+    ],
+    "totalUtilitiesCostPerTon": 3.2075,
+    "totalProductionLaborCostPerTon": 7.7125,
+    "totalMaintenanceLaborCostPerTon": 97.5,
+    "totalCostPerTon": 108.42
+  }
+]

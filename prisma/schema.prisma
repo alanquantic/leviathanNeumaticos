@@ -1,0 +1,357 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model ProcessingStage {
+  id                              Int                 @id @default(autoincrement())
+  stageNumber                     Int                 @unique
+  stageName                       String
+  machineName                     String
+  inputProduct                    String
+  finishProduct                   String
+  tonsPerHour                     Float
+  totalUtilitiesCostPerTon        Float
+  totalProductionLaborCostPerTon  Float
+  totalMaintenanceLaborCostPerTon Float
+  totalCostPerTon                 Float
+  createdAt                       DateTime            @default(now())
+  updatedAt                       DateTime            @updatedAt
+  utilityCosts                    UtilityCost[]
+  productionLabor                 ProductionLabor[]
+  maintenanceLabor                MaintenanceLabor[]
+  scenarios                       ScenarioStage[]
+
+  @@map("processing_stages")
+}
+
+model UtilityCost {
+  id              Int             @id @default(autoincrement())
+  stageId         Int
+  name            String
+  pricePerUnit    Float
+  usePerHour      Float
+  costPerHour     Float
+  costPerTon      Float
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  stage           ProcessingStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  @@map("utility_costs")
+}
+
+model ProductionLabor {
+  id               Int             @id @default(autoincrement())
+  stageId          Int
+  name             String
+  costPerHour      Float
+  usePerHour       Float
+  totalCostPerHour Float
+  costPerTon       Float
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  stage            ProcessingStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  @@map("production_labor")
+}
+
+model MaintenanceLabor {
+  id              Int             @id @default(autoincrement())
+  stageId         Int
+  name            String
+  productionHours Float
+  productionTons  Float
+  leadMechanic    Float
+  mechanic        Float
+  laborer         Float
+  costPerTon      Float
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  stage           ProcessingStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  @@map("maintenance_labor")
+}
+
+model Scenario {
+  id          Int             @id @default(autoincrement())
+  name        String
+  description String?
+  productType String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  stages      ScenarioStage[]
+
+  @@map("scenarios")
+}
+
+model ScenarioStage {
+  id                              Int      @id @default(autoincrement())
+  scenarioId                      Int
+  stageId                         Int
+  totalUtilitiesCostPerTon        Float
+  totalProductionLaborCostPerTon  Float
+  totalMaintenanceLaborCostPerTon Float
+  totalCostPerTon                 Float
+  createdAt                       DateTime @default(now())
+  updatedAt                       DateTime @updatedAt
+  scenario                        Scenario        @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  stage                           ProcessingStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  @@map("scenario_stages")
+}
+
+// ===============================================
+// MÓDULO A: EQUIPMENT FINANCIALS (CAPEX)
+// ===============================================
+
+model EquipmentFinancial {
+  id                    Int       @id @default(autoincrement())
+  machineName           String    @unique
+  stageNumber           Int
+  purchasePrice         Float     // USD
+  installationCost      Float     // USD
+  totalCapex            Float     // purchasePrice + installationCost
+  usefulLifeYears       Int       // años de vida útil
+  usefulLifeHours       Int       // horas operativas totales
+  depreciationMethod    String    @default("straight_line") // "straight_line", "declining_balance"
+  annualMaintenanceRate Float     @default(0.05) // % del CAPEX
+  insuranceRate         Float     @default(0.02) // % del CAPEX
+  financingType         String    @default("cash") // "cash", "debt"
+  debtInterestRate      Float?    // % si es financiado
+  debtTermYears         Int?      // años del préstamo
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("equipment_financials")
+}
+
+// ===============================================
+// MÓDULO B: REVENUE MODEL
+// ===============================================
+
+model ProductRevenue {
+  id                    Int       @id @default(autoincrement())
+  productName           String    @unique // "3\" Nominal Chips", "1\" Chips", "Crumb Rubber"
+  productType           String    // "chips_3", "chips_1", "crumb"
+  
+  // Precios de venta (USD/ton)
+  localPriceConservative  Float
+  localPriceBase          Float
+  localPriceAggressive    Float
+  exportPriceConservative Float
+  exportPriceBase         Float
+  exportPriceAggressive   Float
+  
+  // Información de mercado
+  primaryMarket         String    // "TDF", "Construction", "Molding", etc.
+  secondaryMarket       String?
+  marketNotes           String?
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("product_revenues")
+}
+
+// ===============================================
+// MÓDULO C: PLANT CONFIGURATION
+// ===============================================
+
+model PlantConfiguration {
+  id                    Int       @id @default(autoincrement())
+  name                  String    @default("Default Plant")
+  
+  // Parámetros operacionales
+  tonsPerDay            Float     @default(100)
+  operatingDaysPerYear  Int       @default(330)
+  uptimePercentage      Float     @default(0.85) // 85%
+  
+  // Mix de producción (debe sumar 100)
+  productMixChips3      Float     @default(30) // %
+  productMixChips1      Float     @default(40) // %
+  productMixCrumb       Float     @default(30) // %
+  
+  // Escenario de precio activo
+  activeScenario        String    @default("base") // "conservative", "base", "aggressive"
+  
+  // Mercado predominante
+  marketSplit           String    @default("local") // "local", "export", "mixed"
+  localExportRatio      Float     @default(0.80) // 80% local, 20% export
+  
+  // Parámetros financieros
+  discountRate          Float     @default(0.12) // 12% WACC
+  projectionYears       Int       @default(15)
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("plant_configurations")
+}
+
+// ===============================================
+// MÓDULO D: TOKEN MODEL
+// ===============================================
+
+model TokenModel {
+  id                      Int       @id @default(autoincrement())
+  plantName               String    @default("Tire Recycling Plant #1")
+  tokenName               String    @default("TRP1")
+  tokenSymbol             String    @default("TRP1")
+  
+  totalSupply             Int       // número total de tokens
+  tokenPrice              Float     // precio por token en USD
+  totalRaise              Float     // totalSupply * tokenPrice
+  
+  // Distribución de revenue
+  revenueSharePercentage  Float     @default(0.70) // 70% de EBITDA distribuido
+  distributionFrequency   String    @default("quarterly") // "monthly", "quarterly", "annually"
+  payoutCurrency          String    @default("USDC")
+  
+  // Estructura legal
+  spvJurisdiction         String    @default("Delaware")
+  tokenType               String    @default("revenue_share") // no equity
+  
+  // Rendimientos esperados (calculados)
+  expectedAnnualYield     Float?
+  breakEvenMonths         Int?
+  
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  @@map("token_models")
+}
+
+// ===============================================
+// MÓDULO E: TIPPING FEE (Nueva Funcionalidad)
+// ===============================================
+
+model TippingFeeProfile {
+  id                      Int       @id @default(autoincrement())
+  name                    String    @unique // "Default", "Custom A", etc.
+  description             String?
+  
+  // Fees totales por escenario (USD/ton)
+  feeLow                  Float     @default(0)    // Escenario conservador
+  feeBase                 Float     @default(0)    // Escenario base
+  feeHigh                 Float     @default(0)    // Escenario agresivo
+  
+  isActive                Boolean   @default(true)
+  isDefault               Boolean   @default(false)
+  
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  
+  components              TippingFeeComponent[]
+  projectAssumptions      ProjectRevenueAssumption[]
+
+  @@map("tipping_fee_profiles")
+}
+
+model TippingFeeComponent {
+  id                      Int                 @id @default(autoincrement())
+  profileId               Int
+  componentName           String              // "Municipal Tax", "Landfill Avoidance", etc.
+  
+  // Valores por escenario (USD/ton)
+  amountLow               Float               @default(0)
+  amountBase              Float               @default(0)
+  amountHigh              Float               @default(0)
+  
+  // Clasificación
+  isPassThrough           Boolean             @default(false) // true = no va al reciclador
+  category                String              @default("other") // "tax", "disposal", "transport", "admin", "other"
+  
+  notes                   String?
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+  
+  profile                 TippingFeeProfile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("tipping_fee_components")
+}
+
+model ProjectRevenueAssumption {
+  id                          Int                 @id @default(autoincrement())
+  projectName                 String              @default("Current Project")
+  
+  // Tipping Fee Configuration
+  tippingFeeEnabled           Boolean             @default(false)
+  tippingFeeProfileId         Int?
+  tippingFeeScenario          String              @default("OFF") // "LOW", "BASE", "HIGH", "OFF"
+  tippingFeeApplyPercentage   Float               @default(100)   // % de tonelaje que recibe tipping fee
+  
+  // Feed-In Model (optional alternative to component-based model)
+  feedInValue                 Float?              // USD/ton - total gate fee charged to customers
+  retainedShareLow            Float?              // % retained by recycler in LOW scenario (e.g., 30)
+  retainedShareBase           Float?              // % retained by recycler in BASE scenario (e.g., 45)
+  retainedShareHigh           Float?              // % retained by recycler in HIGH scenario (e.g., 60)
+  
+  // Contract Details
+  contractConfidence          String              @default("NONE") // "NONE", "VERBAL", "LOI", "SIGNED"
+  contractTenorMonths         Int?                // Duración del contrato en meses
+  contractConcentration       Float               @default(0)     // % que representa el contrato mayor
+  
+  // Volumen esperado
+  expectedTonnagePerYear      Float?              // Toneladas anuales esperadas del contrato
+  
+  // Selling prices override (opcional)
+  overrideSellingPrices       Boolean             @default(false)
+  customChips3Price           Float?
+  customChips1Price           Float?
+  customCrumbPrice            Float?
+  
+  // Metadata
+  notes                       String?
+  createdAt                   DateTime            @default(now())
+  updatedAt                   DateTime            @updatedAt
+  
+  tippingFeeProfile           TippingFeeProfile?  @relation(fields: [tippingFeeProfileId], references: [id])
+
+  @@map("project_revenue_assumptions")
+}
+
+// ===============================================
+// PROYECCIONES FINANCIERAS (calculadas on-the-fly)
+// Opcional: se puede guardar histórico
+// ===============================================
+
+model FinancialProjection {
+  id                    Int       @id @default(autoincrement())
+  plantConfigId         Int
+  year                  Int
+  
+  // Producción
+  totalTonsProcessed    Float
+  
+  // Revenue
+  totalRevenue          Float
+  revenueChips3         Float
+  revenueChips1         Float
+  revenueCrumb          Float
+  revenueTippingFee     Float     @default(0) // Nueva: Revenue de tipping fee
+  
+  // Costos
+  totalOpex             Float
+  totalCapexAmortized   Float
+  totalCost             Float
+  
+  // Resultados
+  grossProfit           Float
+  ebitda                Float
+  ebit                  Float
+  netIncome             Float
+  cashFlow              Float
+  
+  // Acumulados
+  cumulativeCashFlow    Float
+  
+  createdAt             DateTime  @default(now())
+
+  @@map("financial_projections")
+  @@unique([plantConfigId, year])
+}
