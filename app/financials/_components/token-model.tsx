@@ -126,9 +126,9 @@ export function TokenModel() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Token Details */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.tokenModel.tokenDetails}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.tokenModel.tokenDetails}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -162,9 +162,9 @@ export function TokenModel() {
         </Card>
 
         {/* Token Economics */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.tokenModel.tokenEconomics}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.tokenModel.tokenEconomics}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -197,9 +197,9 @@ export function TokenModel() {
         </Card>
 
         {/* Distribution Model */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.tokenModel.distributionModel}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.tokenModel.distributionModel}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -256,9 +256,9 @@ export function TokenModel() {
         </Card>
 
         {/* Legal Structure */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.tokenModel.legalStructure}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.tokenModel.legalStructure}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">

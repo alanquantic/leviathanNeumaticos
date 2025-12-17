@@ -2,9 +2,21 @@ import { NextRequest } from 'next/server';
 import { applyAutoRejectEnforcement, getGateVerdict } from '@/lib/gate-scoring';
 import { extractText } from 'unpdf';
 
+// Vercel serverless function configuration
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '4mb',
+    },
+  },
+  maxDuration: 60,
+};
+
 // PDF text extraction for OpenAI (which doesn't support PDF files directly)
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  const { text } = await extractText(buffer);
+  // unpdf requires Uint8Array, not Buffer
+  const uint8Array = new Uint8Array(buffer);
+  const { text } = await extractText(uint8Array);
   // unpdf returns text as array of strings (one per page), join them
   return Array.isArray(text) ? text.join('\n\n') : text;
 }

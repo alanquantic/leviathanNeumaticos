@@ -95,28 +95,28 @@ export function EquipmentFinancials() {
     <div className="space-y-6">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.equipmentFinancials.totalCapexInvestment}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.equipmentFinancials.totalCapexInvestment}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">${totalCapex.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">${totalCapex.toLocaleString()}</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.equipmentFinancials.annualDepreciation}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.equipmentFinancials.annualDepreciation}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">${totalAnnualDepreciation.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">${totalAnnualDepreciation.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.equipmentFinancials.equipmentCount}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.equipmentFinancials.equipmentCount}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{equipment.length}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">{equipment.length}</div>
           </CardContent>
         </Card>
       </div>

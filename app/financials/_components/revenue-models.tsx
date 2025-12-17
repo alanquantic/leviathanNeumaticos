@@ -127,7 +127,7 @@ export function RevenueModels() {
               <TabsContent value="local" className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Conservative */}
-                  <Card className="border-orange-200 dark:border-orange-900">
+                  <Card className="border-orange-200 dark:border-orange-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <TrendingDown className="h-4 w-4 text-orange-500" />
@@ -152,7 +152,7 @@ export function RevenueModels() {
                   </Card>
 
                   {/* Base */}
-                  <Card className="border-blue-200 dark:border-blue-900">
+                  <Card className="border-blue-200 dark:border-blue-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <Minus className="h-4 w-4 text-blue-500" />
@@ -177,7 +177,7 @@ export function RevenueModels() {
                   </Card>
 
                   {/* Aggressive */}
-                  <Card className="border-green-200 dark:border-green-900">
+                  <Card className="border-green-200 dark:border-green-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <TrendingUp className="h-4 w-4 text-green-500" />
@@ -206,7 +206,7 @@ export function RevenueModels() {
               <TabsContent value="export" className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Conservative */}
-                  <Card className="border-orange-200 dark:border-orange-900">
+                  <Card className="border-orange-200 dark:border-orange-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <TrendingDown className="h-4 w-4 text-orange-500" />
@@ -231,7 +231,7 @@ export function RevenueModels() {
                   </Card>
 
                   {/* Base */}
-                  <Card className="border-blue-200 dark:border-blue-900">
+                  <Card className="border-blue-200 dark:border-blue-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <Minus className="h-4 w-4 text-blue-500" />
@@ -256,7 +256,7 @@ export function RevenueModels() {
                   </Card>
 
                   {/* Aggressive */}
-                  <Card className="border-green-200 dark:border-green-900">
+                  <Card className="border-green-200 dark:border-green-900 bg-white dark:bg-gray-900">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm flex items-center gap-2">
                         <TrendingUp className="h-4 w-4 text-green-500" />

@@ -269,44 +269,44 @@ export function InvestorDashboard() {
 
       {/* KPI Cards - Row 2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.investorDashboard.totalCapex}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.investorDashboard.totalCapex}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{fmt(investment.totalCapexInvestment)}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{fmt(investment.totalCapexInvestment)}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-2">
               <Clock className="h-4 w-4" />
               {t.investorDashboard.paybackPeriod}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
               {investment.paybackPeriodYears ? `${investment.paybackPeriodYears.toFixed(1)} ${t.common.years}` : t.common.notAvailable}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.investorDashboard.grossMargin}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.investorDashboard.grossMargin}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{pct(profitability.grossMargin)}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{pct(profitability.grossMargin)}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{t.investorDashboard.annualOpex}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">{t.investorDashboard.annualOpex}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{fmt(costs.annualOpex)}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{fmt(costs.annualOpex)}</div>
           </CardContent>
         </Card>
       </div>
@@ -360,10 +360,10 @@ export function InvestorDashboard() {
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue by Product */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle>{t.investorDashboard.revenueByProduct}</CardTitle>
-            <CardDescription>{t.investorDashboard.revenueDistribution}</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">{t.investorDashboard.revenueByProduct}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.investorDashboard.revenueDistribution}</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -389,10 +389,10 @@ export function InvestorDashboard() {
         </Card>
 
         {/* Cost Breakdown */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle>{t.investorDashboard.costStructure}</CardTitle>
-            <CardDescription>{t.investorDashboard.opexVsCapex}</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">{t.investorDashboard.costStructure}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.investorDashboard.opexVsCapex}</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -419,10 +419,10 @@ export function InvestorDashboard() {
       </div>
 
       {/* Cash Flow Projection */}
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle>{t.investorDashboard.cashFlowProjection}</CardTitle>
-          <CardDescription>{t.investorDashboard.yearForecast.replace('{years}', projections.length.toString())}</CardDescription>
+          <CardTitle className="text-gray-900 dark:text-white">{t.investorDashboard.cashFlowProjection}</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">{t.investorDashboard.yearForecast.replace('{years}', projections.length.toString())}</CardDescription>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={400}>
@@ -442,10 +442,10 @@ export function InvestorDashboard() {
       </Card>
 
       {/* EBITDA Progression */}
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle>{t.investorDashboard.ebitdaProgression}</CardTitle>
-          <CardDescription>{t.investorDashboard.profitabilityMetrics}</CardDescription>
+          <CardTitle className="text-gray-900 dark:text-white">{t.investorDashboard.ebitdaProgression}</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">{t.investorDashboard.profitabilityMetrics}</CardDescription>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={350}>
@@ -463,10 +463,10 @@ export function InvestorDashboard() {
       </Card>
 
       {/* True Cost per Ton */}
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle>{t.investorDashboard.trueCostPerTon}</CardTitle>
-          <CardDescription>{t.investorDashboard.completeCostAnalysis}</CardDescription>
+          <CardTitle className="text-gray-900 dark:text-white">{t.investorDashboard.trueCostPerTon}</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">{t.investorDashboard.completeCostAnalysis}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

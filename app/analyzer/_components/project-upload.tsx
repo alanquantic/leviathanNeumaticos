@@ -26,7 +26,7 @@ export function ProjectUpload({ onAnalysisComplete, isAnalyzing, setIsAnalyzing 
         toast.error(t.projectUpload.onlyPdf);
         return;
       }
-      if (file.size > 10 * 1024 * 1024) {
+      if (file.size > 4 * 1024 * 1024) {
         toast.error(t.projectUpload.maxSizeError);
         return;
       }

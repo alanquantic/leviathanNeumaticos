@@ -42,10 +42,10 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 85) return 'text-green-600';
-    if (score >= 70) return 'text-blue-600';
-    if (score >= 50) return 'text-amber-600';
-    return 'text-red-600';
+    if (score >= 85) return 'text-green-600 dark:text-green-400';
+    if (score >= 70) return 'text-blue-600 dark:text-blue-400';
+    if (score >= 50) return 'text-amber-600 dark:text-amber-400';
+    return 'text-red-600 dark:text-red-400';
   };
 
   const getScoreBadge = (score: number) => {
@@ -58,21 +58,21 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
   const getGateVerdict = (score: number) => {
     if (score >= 70) return {
       text: t.analysisResults.passedGate,
-      icon: <CheckCircle className="h-6 w-6 text-green-600" />,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50 dark:bg-green-900/20'
+      icon: <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />,
+      color: 'text-green-600 dark:text-green-400',
+      bgColor: 'bg-green-100 dark:bg-green-950'
     };
     if (score >= 50) return {
       text: t.analysisResults.conditionalApproval,
-      icon: <AlertTriangle className="h-6 w-6 text-amber-600" />,
-      color: 'text-amber-600',
-      bgColor: 'bg-amber-50 dark:bg-amber-900/20'
+      icon: <AlertTriangle className="h-6 w-6 text-amber-600 dark:text-amber-400" />,
+      color: 'text-amber-600 dark:text-amber-400',
+      bgColor: 'bg-amber-100 dark:bg-amber-950'
     };
     return {
       text: t.analysisResults.rejectedGate,
-      icon: <XCircle className="h-6 w-6 text-red-600" />,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50 dark:bg-red-900/20'
+      icon: <XCircle className="h-6 w-6 text-red-600 dark:text-red-400" />,
+      color: 'text-red-600 dark:text-red-400',
+      bgColor: 'bg-red-100 dark:bg-red-950'
     };
   };
 
@@ -84,7 +84,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             {t.analysisResults.title}
           </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
             {t.analysisResults.generatedBy}
           </p>
         </div>
@@ -134,9 +134,9 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
           <div className="space-y-4">
             {/* Auto-Reject Warning (if triggered) */}
             {data.tippingScoring?.auto_reject_triggered && (
-              <Alert className="bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800">
-                <XCircle className="h-5 w-5 text-red-600" />
-                <AlertDescription className="text-red-900 dark:text-red-200 font-semibold">
+              <Alert className="bg-red-100 border-red-300 dark:bg-red-950 dark:border-red-700">
+                <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
+                <AlertDescription className="text-red-800 dark:text-red-100 font-semibold">
                   ⛔ {t.analysisResults.autoRejectTriggered}
                 </AlertDescription>
               </Alert>
@@ -157,14 +157,14 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
             
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.originalVerdict}</h4>
-              <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
+              <p className="text-lg font-medium text-gray-800 dark:text-gray-100">
                 {data.executiveSummary?.verdict || t.analysisResults.notAvailable}
               </p>
             </div>
             {data.executiveSummary?.comment && (
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.comment}</h4>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-800 dark:text-gray-100">
                   {data.executiveSummary.comment}
                 </p>
               </div>
@@ -183,58 +183,58 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Key Metrics Grid */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
-              <Building2 className="h-5 w-5 text-blue-600" />
-              <CardTitle className="text-base">{t.analysisResults.infrastructure}</CardTitle>
+              <Building2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <CardTitle className="text-base text-gray-900 dark:text-white">{t.analysisResults.infrastructure}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">
-              {data.scores?.infrastructure || 'N/A'}<span className="text-sm text-gray-500">/30</span>
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              {data.scores?.infrastructure || 'N/A'}<span className="text-sm text-gray-500 dark:text-gray-400">/30</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-green-600" />
-              <CardTitle className="text-base">{t.analysisResults.production}</CardTitle>
+              <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
+              <CardTitle className="text-base text-gray-900 dark:text-white">{t.analysisResults.production}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">
-              {data.scores?.production || 'N/A'}<span className="text-sm text-gray-500">/25</span>
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              {data.scores?.production || 'N/A'}<span className="text-sm text-gray-500 dark:text-gray-400">/25</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
-              <DollarSign className="h-5 w-5 text-purple-600" />
-              <CardTitle className="text-base">{t.analysisResults.financials}</CardTitle>
+              <DollarSign className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+              <CardTitle className="text-base text-gray-900 dark:text-white">{t.analysisResults.financials}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">
-              {data.scores?.financials || 'N/A'}<span className="text-sm text-gray-500">/25</span>
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              {data.scores?.financials || 'N/A'}<span className="text-sm text-gray-500 dark:text-gray-400">/25</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
-              <Target className="h-5 w-5 text-amber-600" />
-              <CardTitle className="text-base">{t.analysisResults.risks}</CardTitle>
+              <Target className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+              <CardTitle className="text-base text-gray-900 dark:text-white">{t.analysisResults.risks}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-amber-600">
-              {data.scores?.risks || 'N/A'}<span className="text-sm text-gray-500">/20</span>
+            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+              {data.scores?.risks || 'N/A'}<span className="text-sm text-gray-500 dark:text-gray-400">/20</span>
             </div>
           </CardContent>
         </Card>
@@ -242,10 +242,10 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Red Flags */}
       {data.executiveSummary?.topRisks && data.executiveSummary.topRisks.length > 0 && (
-        <Card className="border-red-200 dark:border-red-800">
+        <Card className="border-red-200 dark:border-red-800 bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
               {t.analysisResults.topRisks}
             </CardTitle>
           </CardHeader>
@@ -253,8 +253,8 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
             <ul className="space-y-2">
               {data.executiveSummary.topRisks.map((risk: string, index: number) => (
                 <li key={index} className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">•</span>
-                  <span className="text-gray-700 dark:text-gray-300">{risk}</span>
+                  <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                  <span className="text-gray-800 dark:text-gray-100">{risk}</span>
                 </li>
               ))}
             </ul>
@@ -264,10 +264,10 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Corrections Needed */}
       {data.executiveSummary?.topCorrections && data.executiveSummary.topCorrections.length > 0 && (
-        <Card className="border-blue-200 dark:border-blue-800">
+        <Card className="border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <CheckCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               {t.analysisResults.topCorrections}
             </CardTitle>
           </CardHeader>
@@ -275,8 +275,8 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
             <ul className="space-y-2">
               {data.executiveSummary.topCorrections.map((correction: string, index: number) => (
                 <li key={index} className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">•</span>
-                  <span className="text-gray-700 dark:text-gray-300">{correction}</span>
+                  <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
+                  <span className="text-gray-800 dark:text-gray-100">{correction}</span>
                 </li>
               ))}
             </ul>
@@ -286,10 +286,10 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Key Findings */}
       {data.keyFindings && (
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-gray-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <FileText className="h-5 w-5 text-gray-700 dark:text-gray-300" />
               {t.analysisResults.keyFindings}
             </CardTitle>
           </CardHeader>
@@ -298,7 +298,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               {data.keyFindings.infrastructure && (
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.infrastructureMachinery}</h4>
-                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  <p className="text-gray-800 dark:text-gray-100 whitespace-pre-line">
                     {data.keyFindings.infrastructure}
                   </p>
                 </div>
@@ -306,7 +306,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               {data.keyFindings.production && (
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.production}</h4>
-                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  <p className="text-gray-800 dark:text-gray-100 whitespace-pre-line">
                     {data.keyFindings.production}
                   </p>
                 </div>
@@ -314,7 +314,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               {data.keyFindings.financials && (
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.financials}</h4>
-                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  <p className="text-gray-800 dark:text-gray-100 whitespace-pre-line">
                     {data.keyFindings.financials}
                   </p>
                 </div>
@@ -326,25 +326,25 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Tipping Fee Summary */}
       {data.tippingFeeSummary && data.tippingFeeSummary.detected && (
-        <Card className="border-indigo-200 dark:border-indigo-800">
+        <Card className="border-indigo-200 dark:border-indigo-800 bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Banknote className="h-5 w-5 text-indigo-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <Banknote className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
               {t.analysisResults.tippingFeeSummary}
             </CardTitle>
-            <CardDescription>{t.analysisResults.tippingFeeDesc}</CardDescription>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.analysisResults.tippingFeeDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.transparency}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.transparency}</p>
                   <Badge variant={data.tippingFeeSummary.transparency === 'TRANSPARENT' ? 'default' : 'secondary'}>
                     {data.tippingFeeSummary.transparency}
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.tfSharePct}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.tfSharePct}</p>
                   <p className="text-2xl font-bold text-indigo-600">
                     {data.tippingFeeSummary.tf_share?.toFixed(1)}%
                   </p>
@@ -352,9 +352,9 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               </div>
               {/* TF_net Values with Assumption Indicator */}
               {data.tippingFeeSummary.is_assumption && (
-                <Alert className="bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-800">
-                  <AlertTriangle className="h-4 w-4 text-amber-600" />
-                  <AlertDescription className="text-amber-900 dark:text-amber-200">
+                <Alert className="bg-amber-100 border-amber-300 dark:bg-amber-950 dark:border-amber-700">
+                  <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  <AlertDescription className="text-amber-800 dark:text-amber-100">
                     ⚠️ {t.analysisResults.tfNetAssumption}
                   </AlertDescription>
                 </Alert>
@@ -362,7 +362,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               <div className="grid gap-4 md:grid-cols-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">TF Net (LOW)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (LOW)</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -375,7 +375,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">TF Net (BASE)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (BASE)</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -388,7 +388,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">TF Net (HIGH)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (HIGH)</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -402,19 +402,19 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               </div>
               <div className="grid gap-4 md:grid-cols-3">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.contractConfidence}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.contractConfidence}</p>
                   <Badge variant={data.tippingFeeSummary.contract_confidence === 'SIGNED' ? 'default' : 'destructive'}>
                     {data.tippingFeeSummary.contract_confidence}
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.durationYears}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.durationYears}</p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">
                     {data.tippingFeeSummary.contract_tenor_years || 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.customerConcentration}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.customerConcentration}</p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">
                     {data.tippingFeeSummary.customer_concentration_pct?.toFixed(0)}%
                   </p>
@@ -427,13 +427,13 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Base Case Comparison */}
       {data.baseCaseComparison && (
-        <Card className="border-purple-200 dark:border-purple-800">
+        <Card className="border-purple-200 dark:border-purple-800 bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Scale className="h-5 w-5 text-purple-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <Scale className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               {t.analysisResults.baseCaseComparison}
             </CardTitle>
-            <CardDescription>{t.analysisResults.baseCaseComparisonDesc}</CardDescription>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.analysisResults.baseCaseComparisonDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-6 md:grid-cols-2">
@@ -441,19 +441,19 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 <h4 className="font-semibold text-gray-900 dark:text-white">{t.analysisResults.withTippingFee}</h4>
                 <div className="space-y-2">
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.analysisResults.revenue}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.analysisResults.revenue}</p>
                     <p className="text-xl font-bold text-gray-900 dark:text-white">
                       ${data.baseCaseComparison.with_tipping?.revenue?.toLocaleString()}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.investorDashboard.ebitda}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.investorDashboard.ebitda}</p>
                     <p className="text-xl font-bold text-gray-900 dark:text-white">
                       ${data.baseCaseComparison.with_tipping?.ebitda?.toLocaleString()}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.analysisResults.ebitdaMargin}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.analysisResults.ebitdaMargin}</p>
                     <p className="text-2xl font-bold text-green-600">
                       {data.baseCaseComparison.with_tipping?.ebitda_margin_pct?.toFixed(1)}%
                     </p>
@@ -464,19 +464,19 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 <h4 className="font-semibold text-gray-900 dark:text-white">{t.analysisResults.withoutTippingFee}</h4>
                 <div className="space-y-2">
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.analysisResults.revenue}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.analysisResults.revenue}</p>
                     <p className="text-xl font-bold text-gray-900 dark:text-white">
                       ${data.baseCaseComparison.without_tipping?.revenue?.toLocaleString()}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.investorDashboard.ebitda}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.investorDashboard.ebitda}</p>
                     <p className="text-xl font-bold text-gray-900 dark:text-white">
                       ${data.baseCaseComparison.without_tipping?.ebitda?.toLocaleString()}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t.analysisResults.ebitdaMargin}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{t.analysisResults.ebitdaMargin}</p>
                     <p className={`text-2xl font-bold ${
                       (data.baseCaseComparison.without_tipping?.ebitda_margin_pct || 0) >= 12 
                         ? 'text-green-600' 
@@ -489,9 +489,9 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               </div>
             </div>
             {(data.baseCaseComparison.without_tipping?.ebitda_margin_pct || 0) < 12 && (
-              <Alert className="mt-4 border-red-200 dark:border-red-800">
-                <AlertTriangle className="h-4 w-4 text-red-600" />
-                <AlertDescription className="text-red-600">
+              <Alert className="mt-4 bg-red-100 border-red-300 dark:bg-red-950 dark:border-red-700">
+                <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                <AlertDescription className="text-red-800 dark:text-red-100">
                   ⚠️ {t.analysisResults.baseCaseWarning}
                 </AlertDescription>
               </Alert>
@@ -502,25 +502,25 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
 
       {/* Tipping Scoring Impact */}
       {data.tippingScoring && (
-        <Card className="border-amber-200 dark:border-amber-800">
+        <Card className="border-amber-200 dark:border-amber-800 bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Zap className="h-5 w-5 text-amber-600" />
+            <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+              <Zap className="h-5 w-5 text-amber-600 dark:text-amber-400" />
               {t.analysisResults.tippingScoringImpact}
             </CardTitle>
-            <CardDescription>{t.analysisResults.tippingScoringDesc}</CardDescription>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.analysisResults.tippingScoringDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.totalPenaltyPoints}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.totalPenaltyPoints}</p>
                   <p className="text-3xl font-bold text-red-600">
                     -{data.tippingScoring.total_penalty_points}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{t.analysisResults.autoRejectLabel}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.autoRejectLabel}</p>
                   <Badge variant={data.tippingScoring.auto_reject_triggered ? 'destructive' : 'default'}>
                     {data.tippingScoring.auto_reject_triggered ? t.common.yes : t.common.no}
                   </Badge>
@@ -533,16 +533,16 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                     {data.tippingScoring.penalties_applied.map((penalty: string, index: number) => (
                       <li key={index} className="flex items-start gap-2">
                         <span className="text-amber-600 font-bold">•</span>
-                        <span className="text-gray-700 dark:text-gray-300">{penalty}</span>
+                        <span className="text-gray-800 dark:text-gray-100">{penalty}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {data.tippingScoring.auto_reject_triggered && (
-                <Alert className="border-red-200 dark:border-red-800">
-                  <XCircle className="h-4 w-4 text-red-600" />
-                  <AlertDescription className="text-red-600 font-semibold">
+                <Alert className="bg-red-100 border-red-300 dark:bg-red-950 dark:border-red-700">
+                  <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                  <AlertDescription className="text-red-800 dark:text-red-100 font-semibold">
                     🚨 {t.analysisResults.autoRejectMessage}
                   </AlertDescription>
                 </Alert>
@@ -553,14 +553,14 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
       )}
 
       {/* Full Analysis (collapsed) */}
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle>{t.analysisResults.fullAnalysis}</CardTitle>
-          <CardDescription>{t.analysisResults.fullAnalysisDesc}</CardDescription>
+          <CardTitle className="text-gray-900 dark:text-white">{t.analysisResults.fullAnalysis}</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">{t.analysisResults.fullAnalysisDesc}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg max-h-96 overflow-y-auto">
-            <pre className="text-xs text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+            <pre className="text-xs text-gray-800 dark:text-gray-100 whitespace-pre-wrap">
               {data.fullAnalysis || JSON.stringify(data, null, 2)}
             </pre>
           </div>

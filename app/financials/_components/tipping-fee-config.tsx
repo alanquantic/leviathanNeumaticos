@@ -231,13 +231,13 @@ export function TippingFeeConfig() {
   return (
     <div className="space-y-6">
       {/* Configuration Card */}
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-green-600" />
+          <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+            <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
             {t.tippingFeeConfig.title}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-gray-600 dark:text-gray-300">
             {t.tippingFeeConfig.description}
           </CardDescription>
         </CardHeader>
@@ -389,9 +389,9 @@ export function TippingFeeConfig() {
 
       {/* KPI Display */}
       {enabled && calculation && (
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle>{t.tippingFeeConfig.revenueAnalysis}</CardTitle>
+            <CardTitle className="text-gray-900 dark:text-white">{t.tippingFeeConfig.revenueAnalysis}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Fee Breakdown - New Semantics */}

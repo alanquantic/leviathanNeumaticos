@@ -92,13 +92,13 @@ export function PlantConfiguration() {
   return (
     <div className="space-y-6">
       {/* Summary Card */}
-      <Card className="border-2 border-primary/20">
+      <Card className="border-2 border-primary/20 bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
             <Settings className="h-5 w-5" />
             {config.name === 'Default Plant Configuration' ? t.plantConfig.defaultPlantName : config.name}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-gray-600 dark:text-gray-300">
             {t.plantConfig.annualProduction}: {annualTons.toLocaleString(undefined, { maximumFractionDigits: 0 })} {t.plantConfig.tonsYear}
           </CardDescription>
         </CardHeader>
@@ -106,9 +106,9 @@ export function PlantConfiguration() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Operational Parameters */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.plantConfig.operationalParams}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.plantConfig.operationalParams}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -152,10 +152,10 @@ export function PlantConfiguration() {
         </Card>
 
         {/* Product Mix */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.plantConfig.productMix}</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.plantConfig.productMix}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">
               {t.common.total}: {totalMix.toFixed(0)}% {totalMix !== 100 && (
                 <span className="text-destructive font-semibold">({t.plantConfig.mustEqual100})</span>
               )}
@@ -216,9 +216,9 @@ export function PlantConfiguration() {
         </Card>
 
         {/* Scenario & Market */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.plantConfig.pricingScenario}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.plantConfig.pricingScenario}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -274,9 +274,9 @@ export function PlantConfiguration() {
         </Card>
 
         {/* Financial Parameters */}
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle className="text-lg">{t.plantConfig.financialParams}</CardTitle>
+            <CardTitle className="text-lg text-gray-900 dark:text-white">{t.plantConfig.financialParams}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">

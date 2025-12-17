@@ -74,10 +74,10 @@ export default function FinancialsPage() {
           </TabsContent>
 
           <TabsContent value="equipment" className="space-y-4">
-            <Card>
+            <Card className="bg-white dark:bg-gray-900">
               <CardHeader>
-                <CardTitle>{t.financials.equipmentTitle}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-gray-900 dark:text-white">{t.financials.equipmentTitle}</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
                   {t.financials.equipmentDesc}
                 </CardDescription>
               </CardHeader>
@@ -88,10 +88,10 @@ export default function FinancialsPage() {
           </TabsContent>
 
           <TabsContent value="revenue" className="space-y-4">
-            <Card>
+            <Card className="bg-white dark:bg-gray-900">
               <CardHeader>
-                <CardTitle>{t.financials.revenueTitle}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-gray-900 dark:text-white">{t.financials.revenueTitle}</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
                   {t.financials.revenueDesc}
                 </CardDescription>
               </CardHeader>
@@ -102,10 +102,10 @@ export default function FinancialsPage() {
           </TabsContent>
 
           <TabsContent value="plant" className="space-y-4">
-            <Card>
+            <Card className="bg-white dark:bg-gray-900">
               <CardHeader>
-                <CardTitle>{t.financials.plantTitle}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-gray-900 dark:text-white">{t.financials.plantTitle}</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
                   {t.financials.plantDesc}
                 </CardDescription>
               </CardHeader>
@@ -120,10 +120,10 @@ export default function FinancialsPage() {
           </TabsContent>
 
           <TabsContent value="token" className="space-y-4">
-            <Card>
+            <Card className="bg-white dark:bg-gray-900">
               <CardHeader>
-                <CardTitle>{t.financials.tokenTitle}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-gray-900 dark:text-white">{t.financials.tokenTitle}</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
                   {t.financials.tokenDesc}
                 </CardDescription>
               </CardHeader>

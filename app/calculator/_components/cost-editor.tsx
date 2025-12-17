@@ -32,7 +32,7 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
             <CardDescription>
               {stage?.machineName} | {stage?.inputProduct} → {stage?.finishProduct}
             </CardDescription>
-            <div className="mt-2 text-sm font-medium text-gray-700">
+            <div className="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300">
               {t.costEditor.throughput}: {stage?.tonsPerHour} {t.costEditor.tonsHour}
             </div>
           </CardHeader>
@@ -44,7 +44,7 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {stage?.utilityCosts?.map((util: any) => (
-                  <Card key={util?.id} className="bg-yellow-50/50">
+                  <Card key={util?.id} className="bg-yellow-50/50 dark:bg-yellow-900/30">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium">{util?.name}</CardTitle>
                     </CardHeader>
@@ -91,7 +91,7 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
                           className="mt-1"
                         />
                       </div>
-                      <div className="pt-2 text-xs font-medium text-gray-600">
+                      <div className="pt-2 text-xs font-medium text-gray-600 dark:text-gray-300">
                         {t.costEditor.costTon}: ${((util?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}
                       </div>
                     </CardContent>
@@ -107,7 +107,7 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {stage?.productionLabor?.map((labor: any) => (
-                  <Card key={labor?.id} className="bg-blue-50/50">
+                  <Card key={labor?.id} className="bg-blue-50/50 dark:bg-blue-900/30">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium">{labor?.name}</CardTitle>
                     </CardHeader>
@@ -156,7 +156,7 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
                           className="mt-1"
                         />
                       </div>
-                      <div className="pt-2 text-xs font-medium text-gray-600">
+                      <div className="pt-2 text-xs font-medium text-gray-600 dark:text-gray-300">
                         {t.costEditor.costTon}: ${((labor?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}
                       </div>
                     </CardContent>
@@ -172,22 +172,22 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {stage?.maintenanceLabor?.map((maint: any) => (
-                  <Card key={maint?.id} className="bg-orange-50/50">
+                  <Card key={maint?.id} className="bg-orange-50/50 dark:bg-orange-900/30">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium">{maint?.name}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
-                          <span className="text-gray-600">{t.costEditor.productionHours}:</span>
+                          <span className="text-gray-600 dark:text-gray-300">{t.costEditor.productionHours}:</span>
                           <div className="font-medium">{maint?.productionHours ?? 0}</div>
                         </div>
                         <div>
-                          <span className="text-gray-600">{t.costEditor.productionTons}:</span>
+                          <span className="text-gray-600 dark:text-gray-300">{t.costEditor.productionTons}:</span>
                           <div className="font-medium">{maint?.productionTons ?? 0}</div>
                         </div>
                       </div>
-                      <div className="pt-2 text-xs font-medium text-gray-600">
+                      <div className="pt-2 text-xs font-medium text-gray-600 dark:text-gray-300">
                         {t.costEditor.costTon}: ${((maint?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}
                       </div>
                     </CardContent>
@@ -196,30 +196,30 @@ export default function CostEditor({ stages, onCostUpdate, customCosts }: CostEd
               </div>
             </div>
 
-            <div className="mt-6 rounded-lg bg-gradient-to-r from-blue-100 to-green-100 p-4">
+            <div className="mt-6 rounded-lg bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900 dark:to-green-900 p-4">
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-sm text-gray-600">{t.resultsDashboard.utilities}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t.resultsDashboard.utilities}</div>
                   <div className="text-xl font-bold text-blue-700">
                     ${((stage?.totalUtilitiesCostPerTon ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">{t.costEditor.productionLabor}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t.costEditor.productionLabor}</div>
                   <div className="text-xl font-bold text-green-700">
                     ${((stage?.totalProductionLaborCostPerTon ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">{t.resultsDashboard.maintenance}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t.resultsDashboard.maintenance}</div>
                   <div className="text-xl font-bold text-orange-700">
                     ${((stage?.totalMaintenanceLaborCostPerTon ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                 </div>
               </div>
               <div className="mt-4 border-t border-gray-300 pt-4 text-center">
-                <div className="text-sm text-gray-600">{t.costEditor.stageTotalCost}</div>
-                <div className="text-3xl font-bold text-gray-900">
+                <div className="text-sm text-gray-600 dark:text-gray-300">{t.costEditor.stageTotalCost}</div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white">
                   ${((stage?.totalCostPerTon ?? 0))?.toFixed?.(2) ?? '0.00'}
                 </div>
               </div>

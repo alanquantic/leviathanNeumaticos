@@ -129,9 +129,9 @@ export default function ResultsDashboard({ results }: ResultsDashboardProps) {
         </CardContent>
       </Card>
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
+        <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 dark:border-blue-800">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">{t.resultsDashboard.totalCostPerTon}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.totalCostPerTon}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
@@ -143,43 +143,43 @@ export default function ResultsDashboard({ results }: ResultsDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-yellow-50">
+        <Card className="bg-yellow-50 dark:bg-yellow-950">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">{t.resultsDashboard.utilitiesCost}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.utilitiesCost}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-yellow-700">
+            <div className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
               ${totalUtilities?.toFixed?.(2) ?? '0.00'}
             </div>
-            <div className="mt-1 text-xs text-gray-600">
+            <div className="mt-1 text-xs text-gray-600 dark:text-gray-300">
               {((totalUtilities / (results?.totalCostPerTon ?? 1)) * 100)?.toFixed?.(1) ?? '0.0'}% {t.resultsDashboard.ofTotal}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-green-50">
+        <Card className="bg-green-50 dark:bg-green-950">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">{t.resultsDashboard.productionLabor}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.productionLabor}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-700">
+            <div className="text-2xl font-bold text-green-700 dark:text-green-400">
               ${totalProduction?.toFixed?.(2) ?? '0.00'}
             </div>
-            <div className="mt-1 text-xs text-gray-600">
+            <div className="mt-1 text-xs text-gray-600 dark:text-gray-300">
               {((totalProduction / (results?.totalCostPerTon ?? 1)) * 100)?.toFixed?.(1) ?? '0.0'}% {t.resultsDashboard.ofTotal}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-orange-50">
+        <Card className="bg-orange-50 dark:bg-orange-950">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">{t.resultsDashboard.maintenance}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.maintenance}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-700">
+            <div className="text-2xl font-bold text-orange-700 dark:text-orange-400">
               ${totalMaintenance?.toFixed?.(2) ?? '0.00'}
             </div>
-            <div className="mt-1 text-xs text-gray-600">
+            <div className="mt-1 text-xs text-gray-600 dark:text-gray-300">
               {((totalMaintenance / (results?.totalCostPerTon ?? 1)) * 100)?.toFixed?.(1) ?? '0.0'}% {t.resultsDashboard.ofTotal}
             </div>
           </CardContent>
@@ -187,10 +187,10 @@ export default function ResultsDashboard({ results }: ResultsDashboardProps) {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle>{t.resultsDashboard.costBreakdownByCategory}</CardTitle>
-            <CardDescription>{t.resultsDashboard.costBreakdownDesc}</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">{t.resultsDashboard.costBreakdownByCategory}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.resultsDashboard.costBreakdownDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <CostBreakdownChart
@@ -201,10 +201,10 @@ export default function ResultsDashboard({ results }: ResultsDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white dark:bg-gray-900">
           <CardHeader>
-            <CardTitle>{t.resultsDashboard.costByStage}</CardTitle>
-            <CardDescription>{t.resultsDashboard.costByStageDesc}</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">{t.resultsDashboard.costByStage}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">{t.resultsDashboard.costByStageDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <StageCostChart stages={results?.stages ?? []} />
@@ -212,70 +212,70 @@ export default function ResultsDashboard({ results }: ResultsDashboardProps) {
         </Card>
       </div>
 
-      <Card>
+      <Card className="bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle>{t.resultsDashboard.detailedStageBreakdown}</CardTitle>
-          <CardDescription>{t.resultsDashboard.completeCostAnalysis} {getProductName()}</CardDescription>
+          <CardTitle className="text-gray-900 dark:text-white">{t.resultsDashboard.detailedStageBreakdown}</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">{t.resultsDashboard.completeCostAnalysis} {getProductName()}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {results?.stages?.map((stage: any, index: number) => (
-            <div key={stage?.id} className="rounded-lg border-2 border-gray-200 bg-gray-50 p-4">
+            <div key={stage?.id} className="rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-4">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     {t.common.stage} {stage?.stageNumber}: {stage?.stageName}
                   </h3>
-                  <p className="text-sm text-gray-600">{stage?.machineName}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{stage?.machineName}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
                     ${((stage?.calculatedTotalCost ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
-                  <div className="text-sm text-gray-600">{t.resultsDashboard.perTon}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t.resultsDashboard.perTon}</div>
                 </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-3">
-                <div className="rounded-lg bg-yellow-100 p-3">
-                  <div className="mb-2 text-sm font-medium text-gray-700">{t.resultsDashboard.utilities}</div>
-                  <div className="text-xl font-bold text-yellow-700">
+                <div className="rounded-lg bg-yellow-100 dark:bg-yellow-900 p-3">
+                  <div className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.utilities}</div>
+                  <div className="text-xl font-bold text-yellow-700 dark:text-yellow-400">
                     ${((stage?.calculatedTotalUtilities ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                   <div className="mt-2 space-y-1">
                     {stage?.utilityCosts?.map((util: any) => (
                       <div key={util?.id} className="flex justify-between text-xs">
-                        <span className="text-gray-600">{util?.name}:</span>
-                        <span className="font-medium">${((util?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
+                        <span className="text-gray-600 dark:text-gray-300">{util?.name}:</span>
+                        <span className="font-medium text-gray-900 dark:text-white">${((util?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
                       </div>
                     )) ?? []}
                   </div>
                 </div>
 
-                <div className="rounded-lg bg-green-100 p-3">
-                  <div className="mb-2 text-sm font-medium text-gray-700">{t.resultsDashboard.productionLabor}</div>
-                  <div className="text-xl font-bold text-green-700">
+                <div className="rounded-lg bg-green-100 dark:bg-green-900 p-3">
+                  <div className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.productionLabor}</div>
+                  <div className="text-xl font-bold text-green-700 dark:text-green-400">
                     ${((stage?.calculatedTotalProduction ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                   <div className="mt-2 space-y-1">
                     {stage?.productionLabor?.map((labor: any) => (
                       <div key={labor?.id} className="flex justify-between text-xs">
-                        <span className="text-gray-600">{labor?.name}:</span>
-                        <span className="font-medium">${((labor?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
+                        <span className="text-gray-600 dark:text-gray-300">{labor?.name}:</span>
+                        <span className="font-medium text-gray-900 dark:text-white">${((labor?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
                       </div>
                     )) ?? []}
                   </div>
                 </div>
 
-                <div className="rounded-lg bg-orange-100 p-3">
-                  <div className="mb-2 text-sm font-medium text-gray-700">{t.resultsDashboard.maintenance}</div>
-                  <div className="text-xl font-bold text-orange-700">
+                <div className="rounded-lg bg-orange-100 dark:bg-orange-900 p-3">
+                  <div className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">{t.resultsDashboard.maintenance}</div>
+                  <div className="text-xl font-bold text-orange-700 dark:text-orange-400">
                     ${((stage?.calculatedTotalMaintenance ?? 0))?.toFixed?.(2) ?? '0.00'}
                   </div>
                   <div className="mt-2 space-y-1">
                     {stage?.maintenanceLabor?.slice?.(0, 3)?.map?.((maint: any) => (
                       <div key={maint?.id} className="flex justify-between text-xs">
-                        <span className="text-gray-600 truncate">{maint?.name}:</span>
-                        <span className="font-medium ml-1">${((maint?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
+                        <span className="text-gray-600 dark:text-gray-300 truncate">{maint?.name}:</span>
+                        <span className="font-medium text-gray-900 dark:text-white ml-1">${((maint?.costPerTon ?? 0))?.toFixed?.(4) ?? '0.0000'}</span>
                       </div>
                     )) ?? []}
                   </div>
