@@ -594,6 +594,26 @@ export const es = {
     // Full Analysis
     fullAnalysis: 'Análisis Completo',
     fullAnalysisDesc: 'Análisis detallado generado por el sistema',
+    
+    // Dynamic Data Values (from API)
+    dataValues: {
+      // Transparency
+      transparent: 'TRANSPARENTE',
+      nonTransparent: 'NO TRANSPARENTE',
+      // Contract Confidence
+      contractNone: 'NINGUNO',
+      contractVerbal: 'ACUERDO VERBAL',
+      contractLoi: 'CARTA DE INTENCIÓN',
+      contractSigned: 'FIRMADO',
+      // Verdict
+      verdictViable: 'Viable',
+      verdictNotViable: 'No viable',
+      verdictConditional: 'Viable con ajustes',
+      // Tokenization Level
+      tokenNotTokenizable: 'No tokenizable',
+      tokenWithChanges: 'Tokenizable con cambios',
+      tokenAsRwa: 'Tokenizable como RWA',
+    },
   },
 
   // Results Dashboard (Calculator)

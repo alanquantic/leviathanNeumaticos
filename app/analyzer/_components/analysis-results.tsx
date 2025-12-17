@@ -22,14 +22,62 @@ import {
 import { toast } from 'sonner';
 import { exportGateReportToPDF } from '@/lib/gate-export';
 import { useLanguage } from '@/lib/i18n/context';
+import type { 
+  AnalysisData, 
+  TransparencyLevel, 
+  ContractConfidence, 
+  Verdict, 
+  TokenizationLevel 
+} from '@/types/analysis';
 
 interface AnalysisResultsProps {
-  data: any;
+  data: AnalysisData;
   onNewAnalysis: () => void;
 }
 
 export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
   const { t } = useLanguage();
+
+  // Helper functions to translate dynamic data values
+  const translateTransparency = (value: TransparencyLevel | undefined): string => {
+    if (!value) return t.common.notAvailable;
+    switch (value) {
+      case 'TRANSPARENT': return t.analysisResults.dataValues.transparent;
+      case 'NON_TRANSPARENT': return t.analysisResults.dataValues.nonTransparent;
+      default: return value;
+    }
+  };
+
+  const translateContractConfidence = (value: ContractConfidence | undefined): string => {
+    if (!value) return t.common.notAvailable;
+    switch (value) {
+      case 'NONE': return t.analysisResults.dataValues.contractNone;
+      case 'VERBAL': return t.analysisResults.dataValues.contractVerbal;
+      case 'LOI': return t.analysisResults.dataValues.contractLoi;
+      case 'SIGNED': return t.analysisResults.dataValues.contractSigned;
+      default: return value;
+    }
+  };
+
+  const translateVerdict = (value: Verdict | undefined): string => {
+    if (!value) return t.analysisResults.notAvailable;
+    switch (value) {
+      case 'Viable': return t.analysisResults.dataValues.verdictViable;
+      case 'No viable': return t.analysisResults.dataValues.verdictNotViable;
+      case 'Viable con ajustes': return t.analysisResults.dataValues.verdictConditional;
+      default: return value;
+    }
+  };
+
+  const translateTokenizationLevel = (value: TokenizationLevel | undefined): string => {
+    if (!value) return t.common.notAvailable;
+    switch (value) {
+      case 'No tokenizable': return t.analysisResults.dataValues.tokenNotTokenizable;
+      case 'Tokenizable con cambios': return t.analysisResults.dataValues.tokenWithChanges;
+      case 'Tokenizable como RWA': return t.analysisResults.dataValues.tokenAsRwa;
+      default: return value;
+    }
+  };
   
   const handleExportPDF = () => {
     try {
@@ -158,7 +206,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.originalVerdict}</h4>
               <p className="text-lg font-medium text-gray-800 dark:text-gray-100">
-                {data.executiveSummary?.verdict || t.analysisResults.notAvailable}
+                {translateVerdict(data.executiveSummary?.verdict)}
               </p>
             </div>
             {data.executiveSummary?.comment && (
@@ -173,7 +221,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t.analysisResults.tokenizationLevel}</h4>
                 <Badge variant="outline" className="text-sm">
-                  {data.executiveSummary.tokenizationLevel}
+                  {translateTokenizationLevel(data.executiveSummary.tokenizationLevel)}
                 </Badge>
               </div>
             )}
@@ -340,7 +388,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 <div>
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.transparency}</p>
                   <Badge variant={data.tippingFeeSummary.transparency === 'TRANSPARENT' ? 'default' : 'secondary'}>
-                    {data.tippingFeeSummary.transparency}
+                    {translateTransparency(data.tippingFeeSummary.transparency)}
                   </Badge>
                 </div>
                 <div>
@@ -362,7 +410,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
               <div className="grid gap-4 md:grid-cols-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (LOW)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t.analysisResults.tfNetLow}</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -375,7 +423,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (BASE)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t.analysisResults.tfNetBase}</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -388,7 +436,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">TF Net (HIGH)</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t.analysisResults.tfNetHigh}</p>
                     {data.tippingFeeSummary.is_assumption && (
                       <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
                         {t.analysisResults.assumption}
@@ -404,7 +452,7 @@ export function AnalysisResults({ data, onNewAnalysis }: AnalysisResultsProps) {
                 <div>
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.analysisResults.contractConfidence}</p>
                   <Badge variant={data.tippingFeeSummary.contract_confidence === 'SIGNED' ? 'default' : 'destructive'}>
-                    {data.tippingFeeSummary.contract_confidence}
+                    {translateContractConfidence(data.tippingFeeSummary.contract_confidence)}
                   </Badge>
                 </div>
                 <div>

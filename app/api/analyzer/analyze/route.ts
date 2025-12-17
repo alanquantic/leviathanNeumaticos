@@ -363,6 +363,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const language = (formData.get('language') as string) || 'es';
 
     if (!file) {
       return Response.json(
@@ -370,6 +371,11 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Language instructions for the AI
+    const languageInstructions = language === 'en' 
+      ? 'IMPORTANT: Generate ALL text content (verdict, comment, topRisks, topCorrections, keyFindings, penalties_applied, fullAnalysis) in ENGLISH.'
+      : 'IMPORTANTE: Genera TODO el contenido de texto (verdict, comment, topRisks, topCorrections, keyFindings, penalties_applied, fullAnalysis) en ESPAÑOL.';
 
     // Convert PDF to buffer
     const arrayBuffer = await file.arrayBuffer();
@@ -400,11 +406,11 @@ export async function POST(request: NextRequest) {
       messages = [
         {
           role: 'system',
-          content: 'You are Leviathan Gate, an industrial infrastructure due diligence system. Analyze the following document and respond ONLY with valid JSON.'
+          content: `You are Leviathan Gate, an industrial infrastructure due diligence system. Analyze the following document and respond ONLY with valid JSON. ${languageInstructions}`
         },
         {
           role: 'user',
-          content: `${MASTER_PROMPT}\n\n--- DOCUMENT CONTENT (extracted from PDF: ${file.name}) ---\n\n${pdfText}`
+          content: `${languageInstructions}\n\n${MASTER_PROMPT}\n\n--- DOCUMENT CONTENT (extracted from PDF: ${file.name}) ---\n\n${pdfText}`
         }
       ];
     } else {
@@ -423,7 +429,7 @@ export async function POST(request: NextRequest) {
             },
             {
               type: 'text',
-              text: MASTER_PROMPT
+              text: `${languageInstructions}\n\n${MASTER_PROMPT}`
             }
           ]
         }

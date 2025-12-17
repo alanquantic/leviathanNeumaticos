@@ -17,10 +17,11 @@ export function LanguageSwitcher() {
       size="sm"
       onClick={toggleLanguage}
       className="flex items-center gap-2"
+      title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
     >
       <Globe className="h-4 w-4" />
-      <span className="text-sm font-medium">
-        {language === 'es' ? 'EN' : 'ES'}
+      <span className="text-sm font-medium uppercase">
+        {language}
       </span>
     </Button>
   );

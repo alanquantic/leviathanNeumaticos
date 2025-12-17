@@ -2,7 +2,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 export interface GateAnalysisData {
-  documentType: string;
+  documentType?: string;
   reliability?: string;
   executiveSummary: {
     verdict: string;

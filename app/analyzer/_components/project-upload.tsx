@@ -14,7 +14,7 @@ interface ProjectUploadProps {
 }
 
 export function ProjectUpload({ onAnalysisComplete, isAnalyzing, setIsAnalyzing }: ProjectUploadProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [progress, setProgress] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -43,6 +43,7 @@ export function ProjectUpload({ onAnalysisComplete, isAnalyzing, setIsAnalyzing 
     try {
       const formData = new FormData();
       formData.append('file', selectedFile);
+      formData.append('language', language);
 
       const response = await fetch('/api/analyzer/analyze', {
         method: 'POST',
