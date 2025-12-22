@@ -4,9 +4,9 @@ import autoTable from 'jspdf-autotable';
 export interface GateAnalysisData {
   documentType?: string;
   reliability?: string;
-  executiveSummary: {
-    verdict: string;
-    score: number;
+  executiveSummary?: {
+    verdict?: string;
+    score?: number;
     topRisks?: string[];
     topCorrections?: string[];
     tokenizationLevel?: string;
@@ -118,10 +118,10 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   
   // Score - Large and prominent
   doc.setFontSize(36);
-  const scoreColor = getScoreColor(data.executiveSummary.score);
+  const scoreColor = getScoreColor(data.executiveSummary?.score || 0);
   doc.setTextColor(scoreColor.r, scoreColor.g, scoreColor.b);
   doc.setFont('helvetica', 'bold');
-  doc.text(`${data.executiveSummary.score}`, 170, yPos + 15);
+  doc.text(`${data.executiveSummary?.score || 0}`, 170, yPos + 15);
   
   doc.setFontSize(8);
   doc.setTextColor(107, 114, 128);
@@ -134,7 +134,7 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   doc.setFont('helvetica', 'bold');
   doc.text('Gate Decision:', 18, yPos + 21);
   
-  const gateVerdict = getGateVerdict(data.executiveSummary.score);
+  const gateVerdict = getGateVerdict(data.executiveSummary?.score || 0);
   doc.setFontSize(11);
   doc.setTextColor(scoreColor.r, scoreColor.g, scoreColor.b);
   doc.setFont('helvetica', 'bold');
@@ -144,7 +144,7 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   doc.setFontSize(9);
   doc.setTextColor(75, 85, 99);
   doc.setFont('helvetica', 'normal');
-  doc.text(`Veredicto Original: ${data.executiveSummary.verdict || 'N/A'}`, 18, yPos + 36);
+  doc.text(`Veredicto Original: ${data.executiveSummary?.verdict || 'N/A'}`, 18, yPos + 36);
   
   yPos += 55;
   
@@ -190,7 +190,7 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   }
   
   // === TOP RISKS ===
-  if (data.executiveSummary.topRisks && data.executiveSummary.topRisks.length > 0) {
+  if (data.executiveSummary?.topRisks && data.executiveSummary.topRisks.length > 0) {
     doc.setFontSize(14);
     doc.setTextColor(220, 38, 38); // red-600
     doc.setFont('helvetica', 'bold');
@@ -212,7 +212,7 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   }
   
   // === TOP CORRECTIONS ===
-  if (data.executiveSummary.topCorrections && data.executiveSummary.topCorrections.length > 0) {
+  if (data.executiveSummary?.topCorrections && data.executiveSummary.topCorrections.length > 0) {
     // Check if we need a new page
     if (yPos > 240) {
       doc.addPage();
@@ -240,7 +240,7 @@ export function exportGateReportToPDF(data: GateAnalysisData) {
   }
   
   // === TOKENIZATION LEVEL ===
-  if (data.executiveSummary.tokenizationLevel) {
+  if (data.executiveSummary?.tokenizationLevel) {
     if (yPos > 250) {
       doc.addPage();
       yPos = 20;
