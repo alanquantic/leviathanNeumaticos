@@ -77,3 +77,5 @@ export interface AnalysisData {
   tippingScoring?: TippingScoring;
   fullAnalysis?: string;
 }
+
+
